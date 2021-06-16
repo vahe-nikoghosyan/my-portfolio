@@ -54,14 +54,16 @@ const tabContents = document.querySelectorAll('[data-content]');
 
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-        const target = document.querySelectorAll(tab.dataset.target);
+        const target = document.querySelector(tab.dataset.target);
+        // console.log(target, 'target')
+        // console.log(tab, 'tab.dataset.')
 
         tabContents.forEach(tabContent => {
             tabContent.classList.remove('qualification__active')
         })
         target.classList.add('qualification__active');
 
-        tab.forEach(tab => {
+        tabs.forEach(tab => {
             tab.classList.remove('qualification__active')
         })
         tab.classList.add('qualification__active')
@@ -69,7 +71,29 @@ tabs.forEach(tab => {
 })
 
 /*==================== SERVICES MODAL ====================*/
+const modalViews = document.querySelectorAll('.services__modal');
+const modalBtns = document.querySelectorAll('.services__button');
+const modalCloses = document.querySelectorAll('.services__modal-close');
 
+let modal = function(modalClick) {
+    console.log(modalViews, 'modalViews')
+    console.log(modalClick, 'modalClick')
+    modalViews[modalClick].classList.add('active-modal')
+}
+
+modalBtns.forEach((modalBtn, i) => {
+    modalBtn.addEventListener('click', () => {
+        modal(i)
+    })
+})
+
+modalCloses.forEach((modalClose) => {
+    modalClose.addEventListener('click', () => {
+        modalViews.forEach((modalView) => {
+            modalView.classList.remove('active-modal')
+        })
+    })
+})
 
 /*==================== PORTFOLIO SWIPER  ====================*/
 
